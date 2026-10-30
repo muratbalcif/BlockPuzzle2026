@@ -1,9 +1,12 @@
 # Architecture
 
-- UI: Compose Multiplatform (Android/iOS), unidirectional state flow
-- Domain: pure Kotlin game-engine with immutable board state
-- Infrastructure (planned): local persistence, Cloudflare Workers + D1 leaderboard
-- Platform integrations (planned): AdMob, Play Billing, StoreKit 2
+- `engine`: active pure Kotlin Multiplatform domain module with immutable boards,
+  deterministic generation, configurable rules and validated session snapshots.
+- `composeApp`: shared Compose Android/iOS UI, foreground/lifecycle controller,
+  local JSON progress, records/statistics and platform storage adapters.
+- `iosApp`: SwiftUI host and Xcode simulator/UI-test project.
+- Planned: Cloudflare Workers + D1 leaderboard; AdMob, Play Billing and StoreKit.
 
-The game-engine is independent of UI, network, and platform SDKs.
-Next step: generate the Gradle KMP application shell and connect the engine as a shared module.
+The original `game-engine/` prototype is preserved from the existing main branch.
+It is not included in Gradle settings; the application uses `:engine` instead.
+See README.md and engine/README.md for current setup and game rules.
