@@ -1,0 +1,28 @@
+name: BlockMaster
+options:
+  bundleIdPrefix: com.blockpuzzle
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "15.0"
+    SWIFT_VERSION: "5.0"
+targets:
+  BlockMaster:
+    type: application
+    platform: iOS
+    sources:
+      - path: BlockMaster
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.blockpuzzle.app
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        TARGETED_DEVICE_FAMILY: "1,2"
+    preBuildScripts:
+      - name: Build Kotlin framework
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :composeApp:embedAndSignAppleFrameworkForXcode
+        basedOnDependencyAnalysis: false
+    dependencies:
+      - framework: ../composeApp/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)/ComposeApp.framework
+        embed: false
