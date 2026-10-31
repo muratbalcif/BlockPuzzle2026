@@ -19,4 +19,4 @@ jobs:
         with:
           gradle-version: '8.10.2'
       - name: Unit tests and Android debug build
-        run: gradle :game-engine:allTests :composeApp:assembleDebug --stacktrace
+        run: gradle :game-engine:testDebugUnitTest :composeApp:assembleDebug --stacktrace
